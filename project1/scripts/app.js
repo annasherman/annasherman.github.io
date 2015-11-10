@@ -22,31 +22,89 @@ var numberOfPairs = boardSize*boardSize/2
 
 //generate cards
 var cards = []; //array holding all the cards
-
+console.log(cards);
 for (var i = 0; i < (boardSize*boardSize); i++) { //make deck
   cards[i] = {};
+  console.log(cards);
 }
 for (var i = 0; i < numberOfPairs; i++) { //assign from array of lifts -- two of each lift.
-  cards[i] = liftOptions[i];
-  cards[i+numberOfPairs] = liftOptions[i];
+  cards[i].innerText = liftOptions[i];
+  cards[i].identify= i;
+  cards[i+numberOfPairs].innerText = liftOptions[i];
+  cards[i+numberOfPairs].identify = i;
 }
+console.log(cards);
 
-// shuffleCards(cards);//shuffle cards
+//add an ID to each object
+//
+shuffleCards(cards);//shuffle cards
 
 for (var i in cards) { //make shit show up
-  var eachCard = $('<div>')
+  var eachCard = $('<div>');
+  var textBox = $('<span>');
   eachCard.addClass('cards');
-  eachCard.text(cards[i]);
+  textBox.prop('id',i);
+  textBox.text(cards[i].innerText);
+  eachCard.append(textBox);
   $('.gameboard').append(eachCard);
 }
 
 //shuffle function
-// function shuffleCards(array){
+function shuffleCards(array){
+    var counter = array.length, temp, index;
+    while (counter > 0) {
+    index = Math.floor(Math.random() * counter);
+    counter--;
+    temp = array[counter];
+    array[counter] = array[index];
+    array[index] = temp;
+    }
+  return array;
+  }
 
+// //begin game: hide all cards
+ $('.cards span').hide();
 
-//begin game: hide all cards
+ //store the id of the clicked item
+ var clickedItemOne;
+ var clickedItemTwo;
 
 //onclick: show contents. animation???
+
+
+$('.cards').click(function(){
+$(this).children().show();
+
+function findIndex(array, key, valuetosearch) {
+
+  for (var i = 0; i < array.length; i++) {
+
+    if (array[i][key] == valuetosearch) {
+      return i;
+    }
+  }
+  return null;
+  }
+
+//set the first clicked item to the index number
+clickedItemOne = findIndex(cards, "innerText", this.innerText);
+console.log(clickedItemOne);
+
+clickedItemTwo = findIndex(cards, "innerText", this.innerText);
+console.log(clickedItemTwo);
+
+if(clickedItemOne == clickedItemTwo){
+  console.log('a match!');
+
+}
+
+
+  // console.log(cards.indexOf(this.innerText));
+  // $('span').show();
+});
+
+
+
 
 console.log(cards);
 

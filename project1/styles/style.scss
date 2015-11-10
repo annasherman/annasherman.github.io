@@ -1,16 +1,17 @@
 .gameboard{
   border: 3px gray solid;
-  height: 600px;
-  width: 600px;
+  height: 500px;
+  width: 80%;
   background-color: rgba(162, 214, 175, 0.62);
   margin: 0 auto;
   padding: 10px;
 }
 
 .cards{
+  // padding: 1%;
   display: inline-block;
-  height: 50px;
-  width: 20%;
+  height: 13%;
+  width: 14%;
   margin: 1%;
   border: 2px black solid;
   background-color: rgba(163, 195, 152, 0.8);
@@ -18,4 +19,11 @@
 
 .cards:hover{
   background-color: rgba(163, 195, 152, 0.6);
+}
+
+span{
+  margin-left: 1%;
+  float: left;
+  text-align: center;
+  display: inline-block;
 }
