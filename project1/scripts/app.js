@@ -37,7 +37,7 @@ console.log(cards);
 
 //add an ID to each object
 //
-shuffleCards(cards);//shuffle cards
+// shuffleCards(cards);//shuffle cards
 
 for (var i in cards) { //make shit show up
   var eachCard = $('<div>');
@@ -66,47 +66,61 @@ function shuffleCards(array){
  $('.cards span').hide();
 
  //store the id of the clicked item
- var clickedItemOne;
- var clickedItemTwo;
+ var clickedItemArray=[];
 
 //onclick: show contents. animation???
 
-
-$('.cards').click(function(){
-$(this).children().show();
-
 function findIndex(array, key, valuetosearch) {
-
   for (var i = 0; i < array.length; i++) {
-
     if (array[i][key] == valuetosearch) {
       return i;
     }
   }
   return null;
-  }
-
-//set the first clicked item to the index number
-clickedItemOne = findIndex(cards, "innerText", this.innerText);
-console.log(clickedItemOne);
-
-clickedItemTwo = findIndex(cards, "innerText", this.innerText);
-console.log(clickedItemTwo);
-
-if(clickedItemOne == clickedItemTwo){
-  console.log('a match!');
-
-}
+};
 
 
-  // console.log(cards.indexOf(this.innerText));
-  // $('span').show();
+// if(clickedItemOne == clickedItemTwo){
+//   console.log('a match!');
+// }
+
+// function playATurn(){
+//   $('.cards').click(function(){
+//   $(this).children().show();
+//   clickedItemOne = findIndex(cards, "innerText", this.innerText);
+//   console.log(clickedItemOne);
+//   });
+//   };
+
+$('.cards').click(function(){
+    $(this).children().show();
+    var spanID = this.id;
+    clickedItem = findIndex(cards, "innerText", this.innerText);
+    console.log(clickedItem);
+    recordClick(clickedItem);
 });
 
+function recordClick(){
+  clickedItemArray.push(clickedItem);
+  console.log(clickedItemArray);
+  if (clickedItemArray.length == 2){
+    if (clickedItemArray[0]===clickedItemArray[1]){
+      console.log("I am the best");
+      clickedItemArray=[];
+      
+      //make the cards disappear
+    } else {
+      console.log("try again");
+      clickedItemArray = [];
+      $('.cards span').delay(1800).hide(0);
+      //flip the cards back over
+    }
+  }
+}
+
+//stop click function after 2 inputs & restart
 
 
-
-console.log(cards);
 
 
 
