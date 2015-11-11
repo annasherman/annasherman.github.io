@@ -33,6 +33,13 @@
   width: 500px;
 }
 
+#playerOneScore, #playerTwoScore{
+  display: block;
+  height: 50px;
+  width: 500px;
+  border: 2px solid gray;
+}
+
 span{
   margin-left: 1%;
   float: left;
