@@ -10,6 +10,8 @@ console.log(liftOptions.length);
 //initialize scoring
 var scorePlayerOne = 0;
 var scorePlayerTwo = 0;
+var currentPlayer = 1;
+var moveCounter = 0;
 
 var clickedItemArray=[];
 var spanIDArray = [];
@@ -27,6 +29,7 @@ function clearClicks(array1, array2){
 function clearCards(){
   if (clickedItemArray.length == 2){//if there are two cards in the array
     canClick = false;
+    moveCounter++;
     if (clickedItemArray[0]===clickedItemArray[1]){ //if they match
       //make the cards disappear
       console.log("A match.");
@@ -53,6 +56,9 @@ function clearCards(){
     });
   }
 }
+
+
+
 
 $(document).ready(function(){
 
@@ -106,6 +112,20 @@ function shuffleCards(array){
 // //begin game: hide all cards
  $('.cards span').hide();
 
+
+//begin game
+function switchPlayer(){
+  if (moveCounter == 0){
+    console.log("Player 1 begins.");
+    currentPlayer = 1;
+    $('.cards').click;
+    console.log(moveCounter);
+  }
+
+}
+
+ switchPlayer();
+
 //onclick: show contents. animation???
 
 function findIndex(array, key, valuetosearch) {
@@ -118,8 +138,6 @@ function findIndex(array, key, valuetosearch) {
 };
 
 //store the id of the clicked item
-
-
 $('.cards').click(function(){
 
     if (canClick == true) {
