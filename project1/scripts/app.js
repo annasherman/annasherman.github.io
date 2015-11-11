@@ -65,8 +65,7 @@ function shuffleCards(array){
 // //begin game: hide all cards
  $('.cards span').hide();
 
- //store the id of the clicked item
- var clickedItemArray=[];
+
 
 //onclick: show contents. animation???
 
@@ -92,26 +91,56 @@ function findIndex(array, key, valuetosearch) {
 //   });
 //   };
 
+//store the id of the clicked item
+var clickedItemArray=[];
+var spanIDArray = [];
+
 $('.cards').click(function(){
     $(this).children().show();
-    var spanID = this.id;
+    //get span elements id and store in an array to clear the parent div later.
+    spanID = $(this).children('span').prop('id');
     clickedItem = findIndex(cards, "innerText", this.innerText);
-    console.log(clickedItem);
-    recordClick(clickedItem);
+    recordClick(clickedItem,spanID);
 });
 
 function recordClick(){
   clickedItemArray.push(clickedItem);
-  console.log(clickedItemArray);
+  spanIDArray.push("#" + spanID);
+  console.log(spanIDArray);
+  //console.log(clickedItemArray);
   if (clickedItemArray.length == 2){
     if (clickedItemArray[0]===clickedItemArray[1]){
       console.log("I am the best");
+      console.log(spanIDArray[0]);
+      $(spanIDArray[0])
+        .parent()
+        .delay(1000)
+        .queue(function(){
+          $(this).css('opacity', '0.0');
+          $(this).dequeue();
+        });
+
+    //   $('.pressimage img')
+    // .delay(1000)
+    // .queue(function(){
+    //     $(this).css({'z-index','1'});
+    //     $(this).dequeue();
+    // });
+
+      $(spanIDArray[1])
+        .parent()
+        .delay(1000)
+        .queue(function(){
+          $(this).css('opacity', '0.0');
+          $(this).dequeue();
+        });
+      spanIDArray=[];
       clickedItemArray=[];
-      
       //make the cards disappear
     } else {
       console.log("try again");
       clickedItemArray = [];
+      spanIDArray=[];
       $('.cards span').delay(1800).hide(0);
       //flip the cards back over
     }
