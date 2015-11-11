@@ -19,6 +19,15 @@
 .cards:hover {
   background-color: rgba(163, 195, 152, 0.6); }
 
+.scorebar {
+  display: block;
+  margin: 0 auto;
+  margin-top: 2%;
+  border: 3px black solid;
+  background: white;
+  height: 100px;
+  width: 500px; }
+
 span {
   margin-left: 1%;
   float: left;

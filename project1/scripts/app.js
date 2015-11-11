@@ -1,18 +1,23 @@
 console.log("Linked.");
 
 //randomize how many different options there are
-
 var liftOptions = ['snatch', 'clean and jerk', 'deadlift', 'bench', 'curl', 'leg press', 'calf raise', 'squat', 'pull up', 'muscle up', 'handstand', 'backbend', 'row', 'lat pulldown', 'decline twist', 'chest fly', 'military press', 'overhead press'];
 
 var boardSize = 6; //rows*columns
 var numberOfPairs = boardSize*boardSize/2
 console.log(liftOptions.length);
 
+//initialize scoring
+var scorePlayerOne = 0;
+var scorePlayerTwo = 0;
+
 var clickedItemArray=[];
 var spanIDArray = [];
 var canClick = true;
 
+//sets arrays to 0 for next move.
 function clearClicks(array1, array2){
+  console.log("the length of the clickeditemarray just before clearClicks is " + clickedItemArray.length);
   array1.pop();
   array2.pop();
   canClick = true;
@@ -20,37 +25,41 @@ function clearClicks(array1, array2){
 
 //stop click function after 2 inputs & restart
 function clearCards(){
-  spanIDArray.push("#" + spanID);
   if (clickedItemArray.length == 2){//if there are two cards in the array
     canClick = false;
     if (clickedItemArray[0]===clickedItemArray[1]){ //if they match
       //make the cards disappear
       console.log("A match.");
+      scorePlayerOne++;
+      $('.scorebar').text("Player 1's score is: " + scorePlayerOne);
+      console.log("the score is" + scorePlayerOne);
       // console.log(spanIDArray[0]);
       for (var i = 0; i < spanIDArray.length; i++) { //fade out each array item div
-        $(spanIDArray[i]).parent().delay(1000).queue(function(){
+        $(spanIDArray[i]).parent().delay(1200).queue(function(){
             $(this).css('opacity', '0.0');
             $(this).dequeue();
           });
-
+          console.log("the spanID Array looks like:" + spanIDArray)
       }
     } else {
       console.log("try again");
-      $('.cards span').delay(1800).fadeOut('fast');
+      $('.cards span').delay(1400).fadeOut('fast');
 
       //flip the cards back over
     }
-    $('.cards').delay(2000).queue(function(){
+    $('.cards').delay(900).queue(function(){
       clearClicks(spanIDArray,clickedItemArray);
       $(this).dequeue();
     });
-    // spanIDArray=[];
-    // clickedItemArray=[];
-    //set the tracking arrays back to empty for next turn
   }
 }
 
 $(document).ready(function(){
+
+//create scorebar
+var scorebar = $('<div>');
+scorebar.addClass('scorebar');
+$('body').append(scorebar);
 
 //generate cards
 var cards = []; //array holding all the cards
@@ -111,17 +120,26 @@ function findIndex(array, key, valuetosearch) {
 //store the id of the clicked item
 
 
-
 $('.cards').click(function(){
 
     if (canClick == true) {
       $(this).children().show();
       //get span elements id and store in an array to clear the parent div later.
       spanID = $(this).children('span').prop('id');
+      console.log(typeof(spanID));
+      console.log(spanID);
+      console.log(spanIDArray);
       clickedItem = findIndex(cards, "innerText", this.innerText);
-      if (clickedItemArray.length < 2){
+      if (clickedItemArray.length < 2 && (spanIDArray.length == 0 || ('#' + spanID) != spanIDArray[0])){
+        console.log(spanIDArray[0]);
+        //dont allow the clicked item to store in the array if youve clicked on the same item twice. so check the spanID against the array.
         clickedItemArray.push(clickedItem);
+        console.log("the spanIDArray length is " + spanIDArray.length);
+        spanIDArray.push("#" + spanID);
+        console.log(Array.isArray(spanIDArray));
+        console.log(spanIDArray);
         console.log(clickedItemArray);
+
       };
       clearCards(clickedItemArray,spanID);
   };
