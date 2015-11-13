@@ -31,9 +31,9 @@
 There is a timing/delay issue which sometimes allows for 3 cards to be faceup at once. If the game is played at a normal rate (i.e. no frantic clicking), everything works fine. If clicks are too fast, some matches won't clear and some non-matches will require 3 cards to clear. 
 
 ###Future features: 
-Change between 1 and 2 player mode.
-Add more topic options -- content creation was not a focus of this project. 
-Changing board size -- this already works (up to 6x6, limited by number of pairs in each array of topics), but still needs to be built in to the page as a user-controlled option. 
+*Change between 1 and 2 player mode.
+*Add more topic options -- content creation was not a focus of this project. 
+*Changing board size -- this already works (up to 6x6, limited by number of pairs in each array of topics), but still needs to be built in to the page as a user-controlled option. 
 
 
 
