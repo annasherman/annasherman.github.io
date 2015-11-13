@@ -22,10 +22,10 @@ $font: 'Open Sans', sans-serif;
   // font-family: $font;
   // border-radius: 3px;
   // background-color:
-    background-color: #ccc;
+    background-color: rgba(63, 65, 64, 0.93);
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    border-radius:6px;
+    border-radius:3px;
     color: rgba(53, 153, 78, 0.73);
     font-family: 'Oswald';
     font-size: 25px;
@@ -33,25 +33,38 @@ $font: 'Open Sans', sans-serif;
     cursor: pointer;
     border: 1px dotted;
     margin-left: 5%;
+    width: 25%;
 }
 
-#dropdown{
-  margin: 0 auto;
-  font-size: 15px;
-  font-family: $font;
-  display: inline-block;
-  padding-left: 30%;
+select {
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   height: 40px;
+   width: 25%;
+   font-size: .7rem;
+   margin-top: 2%;
+   margin-bottom: 0;
+   margin-left: 5%;
+   padding-left: 1%;
 }
 
 header{
+  float: right;
+  text-align: left;
   margin: 0 auto;
   display: block;
   padding-left: 5%;
+  padding-top: 3%;
   height: 50px;
+  margin-bottom: 5px;
+  width: 60%;
+  padding-right: 3%;
 }
 
 body{
   background-color: white;
+  padding-top: 2%;
 }
 
 .cards{
@@ -75,7 +88,7 @@ body{
   float: left;
   margin: 0 auto;
   margin-top: 10%;
-  margin-left: 3%;
+  margin-left: 5%;
   // border: 3px black solid;
   background: white;
   height: 300px;
@@ -83,12 +96,18 @@ body{
 
 }
 
-#playerOneScore, #playerTwoScore{
+#playerOneScore, #playerTwoScore, .playerTurn{
   display: inline-block;
-  height: 145px;
-  width: 150px;
-  border: 2px solid gray;
+  height: 60px;
+  width: 100%;
+  border: 1px solid rgba(102, 102, 102, 0.52);
+  border-radius: 5px;
+  padding-top: 5%;
+  margin-bottom: 3px;
+  text-align: center;
 }
+
+
 
 span{
   float: left;
@@ -96,7 +115,7 @@ span{
   padding-top: 10px;
   display: inline-block;
   font-family: $font;
-  font-size: .75rem;
+  font-size: .90rem;
   height: 52px;
   width: 100%;
 }

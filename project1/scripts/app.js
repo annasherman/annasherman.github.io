@@ -39,7 +39,7 @@ var foodOptions =
   {text:'basil', color: 'rgba(199, 217, 113, 0.83)'},
   {text:'mint', color: 'rgba(49, 43, 149, 0.35)'},
   {text:'apricot', color: 'rgba(52, 147, 195, 0.83)'},
-  {text:'asparaus', color: 'rgba(228, 200, 82, 0.89)'}];
+  {text:'asparagus', color: 'rgba(228, 200, 82, 0.89)'}];
 
 
 var boardSize = 6;
@@ -66,6 +66,7 @@ function switchPlayer(){
   } else {
     currentPlayer = 1;
   };
+  $('.playerTurn').text("Player " + currentPlayer + "\'s turn.");
   console.log(moveCounter);
   console.log("current player is " + currentPlayer);
 }
@@ -136,7 +137,7 @@ for (var i = 0; i < (boardSize*boardSize); i++) { //make deck
 
 function showUp(){
 console.log(cards);
-//shuffleCards(cards);
+shuffleCards(cards);
 for (var i in cards) {
   var eachCard = $('<div>');
   var textBox = $('<span>');
@@ -214,7 +215,7 @@ function shuffleCards(array){
   $('.cards').click(function(){
   console.log('it got clicked');
       if (canClick == true) {
-        $(this).children().fadeIn('slow');
+        $(this).children().fadeIn('fast');
         //get span elements id and store in an array to clear the parent div later.
         spanID = $(this).children('span').prop('id');
         console.log(this.innerText);
@@ -261,7 +262,11 @@ populateCards();
     scorebar.addClass('scorebar');
     $(scorebar).append(scoreOne);
     $(scorebar).append(scoreTwo);
+    var playerTurn = $('<div>');
+    playerTurn.addClass('playerTurn');
+    $(scorebar).append(playerTurn);
     $('body').append(scorebar);
+    $('.playerTurn').text("Player 1's turn.");
     $('#startGame').unbind('click');
   });
 
