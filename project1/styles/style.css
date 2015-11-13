@@ -48,7 +48,8 @@ header {
   height: 50px;
   margin-bottom: 5px;
   width: 60%;
-  padding-right: 3%; }
+  padding-right: 3%;
+  font-family: "Open Sans", sans-serif; }
 
 body {
   background-color: white;
