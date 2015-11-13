@@ -1,17 +1,59 @@
 console.log("Linked.");
 
 //randomize how many different options there are
-var liftOptions = ['snatch', 'clean and jerk', 'deadlift', 'bench', 'curl', 'leg press', 'calf raise', 'squat', 'pull up', 'muscle up', 'handstand', 'backbend', 'row', 'lat pulldown', 'decline twist', 'chest fly', 'military press', 'overhead press'];
+var liftOptions = [{text:'snatch', color: 'rgba(120, 200, 240, 0.83)'},
+{text:'clean and jerk', color:'rgba(120, 240, 200, 0.83)'},
+  {text:'deadlift', color: 'rgba(240, 120, 188, 0.83)'},
+  {text:'bench', color: 'rgba(240, 235, 120, 0.83)'},
+  {text:'curl', color: 'rgba(83, 245, 95, 0.83)'},
+  {text:'leg press', color: 'rgba(27, 30, 113, 0.88)'},
+  {text:'calf raise', color: 'rgba(73, 117, 215, 0.83)'},
+  {text:'squat', color: 'rgba(240, 141, 120, 0.83)'},
+  {text:'pull up', color: 'rgba(168, 38, 38, 0.83)'},
+  {text:'muscle up', color: 'rgba(232, 134, 32, 0.83)'},
+  {text:'handstand', color: 'rgba(135, 228, 183, 0.69)'},
+  {text:'backbend', color: 'rgba(120, 132, 240, 0.71)'},
+  {text:'row', color: 'rgba(26, 134, 66, 0.83)'},
+  {text:'lat pulldown', color: 'rgba(236, 74, 191, 0.83)'},
+  {text:'decline twist', color: 'rgba(199, 217, 113, 0.83)'},
+  {text:'chest fly', color: 'rgba(49, 43, 149, 0.35)'},
+  {text:'military press', color: 'rgba(52, 147, 195, 0.83)'},
+  {text:'overhead press', color: 'rgba(228, 200, 82, 0.89)'}];
 
-var boardSize = 6; //rows*columns
+
+var foodOptions =
+[{text:'apple', color: 'rgba(120, 200, 240, 0.83)'},
+{text:'banana', color:'rgba(120, 240, 200, 0.83)'},
+  {text:'celery', color: 'rgba(240, 120, 188, 0.83)'},
+  {text:'kale', color: 'rgba(240, 235, 120, 0.83)'},
+  {text:'spinach', color: 'rgba(83, 245, 95, 0.83)'},
+  {text:'bread', color: 'rgba(27, 30, 113, 0.88)'},
+  {text:'bagel', color: 'rgba(73, 117, 215, 0.83)'},
+  {text:'orange', color: 'rgba(240, 141, 120, 0.83)'},
+  {text:'kiwifruit', color: 'rgba(168, 38, 38, 0.83)'},
+  {text:'coconut', color: 'rgba(232, 134, 32, 0.83)'},
+  {text:'peach', color: 'rgba(135, 228, 183, 0.69)'},
+  {text:'pear', color: 'rgba(120, 132, 240, 0.71)'},
+  {text:'nectarine', color: 'rgba(26, 134, 66, 0.83)'},
+  {text:'pineapple', color: 'rgba(236, 74, 191, 0.83)'},
+  {text:'basil', color: 'rgba(199, 217, 113, 0.83)'},
+  {text:'mint', color: 'rgba(49, 43, 149, 0.35)'},
+  {text:'apricot', color: 'rgba(52, 147, 195, 0.83)'},
+  {text:'asparaus', color: 'rgba(228, 200, 82, 0.89)'}];
+
+
+var boardSize = 6;
+ //rows*columns
 var numberOfPairs = boardSize*boardSize/2
 console.log(liftOptions.length);
+
 
 //initialize scoring
 var scorePlayerOne = 0;
 var scorePlayerTwo = 0;
 var currentPlayer = 1;
 var moveCounter = 0;
+var howManyClicked = 0;
 
 var clickedItemArray=[];
 var spanIDArray = [];
@@ -44,8 +86,11 @@ function recordScore(playerNumber){
 
 //sets arrays to 0 for next move.
 function clearClicks(array1, array2){
-  array1.pop();
-  array2.pop();
+  canClick = false;
+  array1.shift();
+  canClick = false;
+  //this creates a moment where the array length is not ==2 and you can click another, allowing 3 cards to show on the screen. how to fix???
+  array2.shift();
   canClick = true;
 }
 
@@ -60,7 +105,7 @@ function clearCards(){
       recordScore(currentPlayer);
       // console.log(spanIDArray[0]);
       for (var i = 0; i < spanIDArray.length; i++) { //fade out each array item div
-        $(spanIDArray[i]).parent().delay(1200).queue(function(){
+        $(spanIDArray[i]).parent().delay(600).queue(function(){
             $(this).css('opacity', '0.0');
             $(this).dequeue();
           });
@@ -68,61 +113,77 @@ function clearCards(){
       }
     } else {
       console.log("try again");
-      $('.cards span').delay(1400).fadeOut('fast');
+      $('.cards span').delay(600).fadeOut(300);
       switchPlayer();
       //flip the cards back over
     }
-    $('.cards').delay(900).queue(function(){
+    canClick = false;
+    $('.cards').delay(500).queue(function(){
       clearClicks(spanIDArray,clickedItemArray);
       $(this).dequeue();
     });
   }
 }
 
-
-//create scorebar
-
-
-$(document).ready(function(){
-
-  var scorebar = $('<div>');
-  var scoreOne = $('<div>');
-  scoreOne.prop('id','playerOneScore');
-  var scoreTwo = $('<div>');
-  scoreTwo.prop('id','playerTwoScore');
-  scorebar.addClass('scorebar');
-  $(scorebar).append(scoreOne);
-  $(scorebar).append(scoreTwo);
-  $('body').append(scorebar);
+//block clicks every half second
 
 //generate cards
 var cards = []; //array holding all the cards
-//console.log(cards);
 for (var i = 0; i < (boardSize*boardSize); i++) { //make deck
   cards[i] = {};
-//  console.log(cards);
 }
-for (var i = 0; i < numberOfPairs; i++) { //assign from array of lifts -- two of each lift.
-  cards[i].innerText = liftOptions[i];
-  cards[i].identify= i;
-  cards[i+numberOfPairs].innerText = liftOptions[i];
-  cards[i+numberOfPairs].identify = i;
-}
-//console.log(cards);
+//decide which board to use
 
-//add an ID to each object
-//
-shuffleCards(cards);//shuffle cards
-
-for (var i in cards) { //make shit show up
+function showUp(){
+console.log(cards);
+//shuffleCards(cards);
+for (var i in cards) {
   var eachCard = $('<div>');
   var textBox = $('<span>');
   eachCard.addClass('cards');
   textBox.prop('id',i);
   textBox.text(cards[i].innerText);
+  textBox.css('background-color', cards[i].color);
   eachCard.append(textBox);
   $('.gameboard').append(eachCard);
+};
 }
+
+// //begin game: hide all cards
+function hideCards(){
+ $('.cards span').hide();
+};
+
+function populateCards(){
+
+  $( ".chooseAnArray" ).change(function() {
+    var whichArray = $('option:selected').val();
+    $('.gameboard').empty();
+    console.log(whichArray);
+    if (whichArray == "lifts"){
+      arrayForGame = liftOptions;
+    } else {
+      arrayForGame = foodOptions;
+    };
+    console.log(arrayForGame);
+    for (var i = 0; i < numberOfPairs; i++) { //assign from array of lifts -- two of each lift.
+    cards[i].innerText = arrayForGame[i].text;
+    cards[i].identify= i;
+    cards[i].color = arrayForGame[i].color;
+    cards[i+numberOfPairs].innerText = arrayForGame[i].text;
+    cards[i+numberOfPairs].identify = i;
+    cards[i+numberOfPairs].color = arrayForGame[i].color;
+    console.log(cards[i]);
+  }
+    console.log(cards);
+    showUp();
+    hideCards();
+    clickACard();
+  });
+
+}
+//create scorebar
+
 
 //shuffle function
 function shuffleCards(array){
@@ -137,48 +198,72 @@ function shuffleCards(array){
   return array;
   }
 
-// //begin game: hide all cards
- $('.cards span').hide();
-
-//onclick: show contents. animation???
-
-function findIndex(array, key, valuetosearch) {
-  for (var i = 0; i < array.length; i++) {
-    if (array[i][key] == valuetosearch) {
-      return i;
+  function findIndex(array, key, valuetosearch) {
+    for (var i = 0; i < array.length; i++) {
+      if (array[i][key] == valuetosearch) {
+        return i;
+      }
     }
-  }
-  return null;
-};
+    return null;
+  };
+
+
+
+
+  function clickACard(){
+  $('.cards').click(function(){
+  console.log('it got clicked');
+      if (canClick == true) {
+        $(this).children().fadeIn('slow');
+        //get span elements id and store in an array to clear the parent div later.
+        spanID = $(this).children('span').prop('id');
+        console.log(this.innerText);
+        clickedItem = findIndex(cards, "innerText", this.innerText);
+        if (clickedItemArray.length < 2 && (spanIDArray.length == 0 || ('#' + spanID) != spanIDArray[0])){
+          //console.log(spanIDArray[0]);
+          //dont allow the clicked item to store in the array if youve clicked on the same item twice. so check the spanID against the array.
+          clickedItemArray.push(clickedItem);
+          //console.log("the spanIDArray length is " + spanIDArray.length);
+          spanIDArray.push("#" + spanID);
+          //console.log(Array.isArray(spanIDArray));
+          console.log("the span ID array is " + spanIDArray);
+          console.log("the clicked Item array is" + clickedItemArray);
+
+        };
+        clearCards(clickedItemArray,spanID);
+    };
+  });
+  };
+
+
+
+
+
+
+
+$(document).ready(function(){
+
+populateCards();
 
 //store the id of the clicked item
-$('.cards').click(function(){
-
-    if (canClick == true) {
-      $(this).children().show();
-      //get span elements id and store in an array to clear the parent div later.
-      spanID = $(this).children('span').prop('id');
-      //console.log(typeof(spanID));
-      //console.log(spanID);
-      //console.log(spanIDArray);
-      clickedItem = findIndex(cards, "innerText", this.innerText);
-      if (clickedItemArray.length < 2 && (spanIDArray.length == 0 || ('#' + spanID) != spanIDArray[0])){
-        //console.log(spanIDArray[0]);
-        //dont allow the clicked item to store in the array if youve clicked on the same item twice. so check the spanID against the array.
-        clickedItemArray.push(clickedItem);
-        //console.log("the spanIDArray length is " + spanIDArray.length);
-        spanIDArray.push("#" + spanID);
-        //console.log(Array.isArray(spanIDArray));
-        console.log("the span ID array is " + spanIDArray);
-        console.log("the clicked Item array is" + clickedItemArray);
-
-      };
-      clearCards(clickedItemArray,spanID);
-  };
-});
 
 
 
+
+
+  //start button
+  $('#startGame').click(function(){
+    var scorebar = $('<div>');
+    var scoreOne = $('<div>');
+    scoreOne.prop('id','playerOneScore');
+    var scoreTwo = $('<div>');
+    scoreTwo.prop('id','playerTwoScore');
+    scorebar.addClass('scorebar');
+    $(scorebar).append(scoreOne);
+    $(scorebar).append(scoreTwo);
+    $('body').append(scorebar);
+    $('#startGame').unbind('click');
+  });
 
 
 //updating selectors function:
@@ -192,7 +277,7 @@ $('.cards').click(function(){
 
 
 //bootstrap
-//velocity 
+//velocity
 
 
 
