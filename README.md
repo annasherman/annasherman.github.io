@@ -17,7 +17,7 @@
 </script>
 ```
 
-##Project 1
+##Project 1: Memory/Concentration
 
 ###Main goals: 
 * Prevent additional clicks when 2 cards are faceup
