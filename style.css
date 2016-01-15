@@ -46,9 +46,9 @@ p{
 	padding: 5px;
 }
 
-img.resize{
-	width: 25%;
-	height: 25%;
+.resize{
+	width: 20%;
+	height: 20%;
 }
 img{
 	border-width: 5px;
