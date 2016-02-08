@@ -1,40 +1,26 @@
-# Here are some quick facts about me:
-* I am a total boss
-* I live with a cat who is also a **total boss.** :bowtie:
-* Nobody likes kale chips.
-* Everybody likes deadlifts. :muscle:
+# [Start Bootstrap](http://startbootstrap.com/) - [Stylish Portfolio](http://startbootstrap.com/template-overviews/stylish-portfolio/)
 
----
+[Stylish Portfolio](http://startbootstrap.com/template-overviews/stylish-portfolio/) is a responsive, one page portfolio theme for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap](http://startbootstrap.com/). The theme features multiple content sections with an off canvas navigation menu.
 
-:octocat:
+## Getting Started
 
-### Look at this sick code:
-```Javascript
-<script>
-	  $("button").on("click",function(){
-    	alert("Mint chocolate chip!");
-    	});
-</script>
-```
+To use this template, choose one of the following options to get started:
+* Download the latest release on Start Bootstrap
+* Fork this repository on GitHub
 
-##Project 1: Memory/Concentration
+## Bugs and Issues
 
-###Main goals: 
-* Prevent additional clicks when 2 cards are faceup
-* Clear cards when matched without changing positions of other cards on the board
-* Generate cards that each have a partner as well as a unique ID 
-* Player switching feature
-* More or less responsive board
-* Ability to switch out topics
+Have a bug or an issue with this theme? [Open a new issue](https://github.com/IronSummitMedia/startbootstrap-stylish-portfolio/issues) here on GitHub or leave a comment on the [template overview page at Start Bootstrap](http://startbootstrap.com/template-overviews/stylish-portfolio/).
 
-###Known bugs: 
-There is a timing/delay issue which sometimes allows for 3 cards to be faceup at once. If the game is played at a normal rate (i.e. no frantic clicking), everything works fine. If clicks are too fast, some matches won't clear and some non-matches will require 3 cards to clear. 
+## Creator
 
-###Future features: 
-* Change between 1 and 2 player mode.
-* Add more topic options -- content creation was not a focus of this project. 
-* Changing board size -- this already works (up to 6x6, limited by number of pairs in each array of topics), but still needs to be built in to the page as a user-controlled option. 
+Start Bootstrap was created by and is maintained by **David Miller**, Managing Parter at [Iron Summit Media Strategies](http://www.ironsummitmedia.com/).
 
+* https://twitter.com/davidmillerskt
+* https://github.com/davidtmiller
 
+Start Bootstrap is based on the [Bootstrap](http://getbootstrap.com/) framework created by [Mark Otto](https://twitter.com/mdo) and [Jacob Thorton](https://twitter.com/fat).
 
-![YOLO](http://www.pdcrsantacruz.org/wp-content/uploads/2012/11/Logo_Yolo_BWwith-tag.jpg)
+## Copyright and License
+
+Copyright 2013-2015 Iron Summit Media Strategies, LLC. Code released under the [Apache 2.0](https://github.com/IronSummitMedia/startbootstrap-stylish-portfolio/blob/gh-pages/LICENSE) license.
