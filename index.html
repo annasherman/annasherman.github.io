@@ -68,10 +68,10 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2>Full-Stack // Back-End Web Developer</h2>
-                    <p class="lead">I love working with JavaScript frameworks, particularly the MEAN stack.<br>
+                    <span class="lead">I love working with JavaScript frameworks, particularly the MEAN stack.<br>
                     I care about detail, quality, and efficiency in my code and unobtrusiveness in my UI.<br>
                     I am a science nerd & weightlifting junkie.
-                    </p>
+                    </span>
                 </div>
             </div>
             <!-- /.row -->
@@ -92,13 +92,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h2>My Work</h2>
-                    <hr class="small">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="portfolio-item">
+                             <h3>FitBuilder</h3>
                                 <a href="http://fitbuilder.herokuapp.com/">
-                                    <img class="img-portfolio img-responsive" src="img/fitbuilder.png">
+                                    <div class="img-portfolio img-responsive fitbuilder-image" src="img/fitbuilder.png"></div>
                                 </a>
                                 <p>My latest and favorite venture! A drag and drop workout-builder with ambitions to house a crowdsourced weightlifting API. This app uses MongoDB, Express, Angular, and Node, as well as <a href="http://rubaxa.github.io/Sortable/">RubaXa's Sortable.js</a> library.
                                 I aimed for an unobtrusive UI, with no page reloads happening during workout edits and silent, behind-the-scenes ordering. Future plans include build out with videos & fitness resources.</p>
@@ -106,8 +105,9 @@
                         </div>
                         <div class="col-md-6">
                             <div class="portfolio-item">
+                             <h3>Flash-Decks</h3>
                                 <a href="http://flash-decks.herokuapp.com/">
-                                    <img class="img-portfolio img-responsive" src="img/flashdecks.png">
+                                    <div class="img-portfolio img-responsive flash-decks-image" src="img/flashdecks.png"></div>
                                 </a>
                                 <p>This is a joint effort between myself and front-end ninja <a href="http://www.simrankhosla.com/">Simran Khosla</a>. We noticed a lack of user-friendly flashcard/studying applications and decided to build our own. We envisioned is as a "learn anything" app, allowing users to study for a specific exam or to browse public decks without account creation. This app is built in Node & Express, with Handlebars as our view engine and a fully custom front-end using JQuery UI.</p>
                             </div>
@@ -116,16 +116,18 @@
                       <div class="row">
                         <div class="col-md-6">
                             <div class="portfolio-item">
+                            <h3>Spectacular Travel App</h3>
                                 <a href="http://spectaculartravel.herokuapp.com/">
-                                    <img class="img-portfolio img-responsive" src="img/travelapp.png">
+                                    <div class="img-portfolio img-responsive spectacular-travel-app-image" src="img/travelapp.png"></div>
                                 </a>
                                 <p>This is a travel wishlist app built by myself and classmate <a href="http://sgroesch.github.io/">Sam Groesch.</a> We wanted an interactive way to keep track of places we had been and places we wanted to go. Originally called "Project Too Real", we are working on expanding the app to bring up World Bank data on click, allowing users to compare country data side by side to better quantify and understand differences in privilege and standard of living. This app is built in Sinatra.</p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="portfolio-item">
+                            <h3>Matching Game</h3>
                                 <a href="http://annaisawesome.herokuapp.com/">
-                                    <img class="img-portfolio img-responsive" src="img/matchinggame.png">
+                                    <div class="img-portfolio img-responsive matching-game-image"></div>
                                 </a>
                                 <p>This was my first project at General Assembly! It is a matching game and a first foray into client side JavaScript. I hope to use it educationally anywhere that memorization plays a key role -- for example, foreign language vocabulary. For now, staying true to my fitness theme, it houses some common lifts. Stay tuned -- this app is in line for a facelift. </p>
                             </div>
@@ -146,9 +148,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h3>The buttons below are impossible to resist.</h3>
-                    <a href="#" class="btn btn-lg btn-light">Click Me!</a>
-                    <a href="#" class="btn btn-lg btn-dark">Look at Me!</a>
+                    <h3>Download my Resume</h3>
+                    <a href="./img/resume.pdf" class="btn btn-lg btn-light">PDF</a>
+                    <a href="./img/resume.docx" class="btn btn-lg btn-dark">Word</a>
                 </div>
             </div>
         </div>
@@ -166,15 +168,15 @@
 
     <!-- Footer -->
     <footer>
-        <div class="container">
+        <div class="container" id="contact">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h4><strong>Let's Chat!</strong>
+                    <h4>Let's Chat!
                     </h4>
-                    <p>Chicago, IL<br>Open to relocation, remote, & travel</p>
+                    <span>Chicago, IL<br>Open to relocation, remote, & travel</span>
                     <ul class="list-unstyled">
                         <!-- <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li> -->
-                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:sherman.anna@gmail.com">sherman.anna@gmail.com</a>
+                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a id="email" href="mailto:sherman.anna@gmail.com">sherman.anna@gmail.com</a>
                         </li>
                     </ul>
                     <br>
@@ -190,7 +192,7 @@
                         </li>
                     </ul>
                     <hr class="small">
-                    <p class="text-muted">{ deadlifts and code }</p>
+                    <span class="text-muted">{ deadlifts and code }</span>
                 </div>
             </div>
         </div>
