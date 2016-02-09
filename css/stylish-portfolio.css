@@ -224,7 +224,8 @@ hr.small {
 }
 
 .matching-game-image, .flash-decks-image, .spectacular-travel-app-image, .fitbuilder-image {
-  background-size: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
   width: 500px;
   height: 260px;
 }
